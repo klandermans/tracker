@@ -11,6 +11,9 @@
       // vanilla JS 
       $(document).ready(
         function() {
+          x = 0
+          y = 0
+          z = 0
           // Your code to run since DOM is loaded and ready
           start = function() {
             $('#app').show()
@@ -29,15 +32,15 @@
               // document.getElementById('countdown').innerHTML = ( interval-counter)
               counter++
               navigator.geolocation.getCurrentPosition(function(position,positionError) {
-                document.getElementById('log').innerHTML = document.getElementById('log').innerHTML + '<div>'+ position.coords.latitude + ' -- ' + position.coords.longitude + ' -- ' +'</div>'
+                document.getElementById('log').innerHTML =  position.coords.latitude + ' -- ' + position.coords.longitude + ' -- ' +x + ' -- ' +y + ' -- ' +x +' --- '+ window.navigator.userAgent +' --<hr>'+document.getElementById('log').innerHTML 
               });
 
-              // let acl = new Accelerometer({frequency: 60});
-              //   acl.addEventListener('reading', () => {
-              //     console.log("Acceleration along the X-axis " + acl.x);
-              //     console.log("Acceleration along the Y-axis " + acl.y);
-              //     console.log("Acceleration along the Z-axis " + acl.z);
-              //   });
+              acl = new Accelerometer({frequency: 60});
+                acl.addEventListener('reading', () => {
+                  x = acl.x
+                  y = acl.y
+                  z = acl.z
+                });
 
               $('#progress').attr('aria-valuenow',  counter)
 
@@ -58,12 +61,12 @@
 
     <center>
     <h1>Dairy Campus Data logger</h1>
-    <p>Deze applicatie is bedoeld om data te verzamelen tijdens een rondleiding op Dairy Campus. 
+    <p>Deze applicatie gaat data verzamelen tijdens een rondleiding op Dairy Campus. 
        Bij het starten van deze logger wordt voor 6 uur data lokatie data van u opgeslagen.
-       Door het activeren van onze applicatie gaat u accoord dat uw data gebruikt wordt 
+       Door het activeren van onze applicatie stemt u ermee in dat uw data gebruikt wordt 
        om vandaag inzicht te geven hoe wij data verzamelen op Dairy Campus. </p> 
-    <p>Na het starten van de app wordt u verzocht uw locatie te delen. 
-      Om deel te nemen aan dit experiment dient u accoord te gaan met het delen van locatie. </p>
+    <p>Na het starten van de app wordt u verzocht uw locatie te delen.</p> 
+    <p>Om deel te nemen aan dit experiment dient u accoord te gaan met het delen van locatie. </p>
 
     <button id="start" class="btn btn-large btn-success">Start Applicatie</button>
   
@@ -80,7 +83,12 @@
 
       <div  class="takePhoto">
         <form id="take" action="" method="POST"> 
-            <input type="file" id= "cap" name="personalPhoto" accept="image/*" capture ="camera" id="camera"><p>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Foto toevoegen</label>
+            <input type="file" class="form-control-file" name="personalPhoto" accept="image/*" capture ="camera"  id="exampleFormControlFile1">
+          </div>
+          
+            
         </form>
       </div>
       <div id="log" styles="height:100px; overflow-y:hidden"></div>
