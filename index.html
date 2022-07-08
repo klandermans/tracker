@@ -1,0 +1,92 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      // vanilla JS 
+      $(document).ready(
+        function() {
+          // Your code to run since DOM is loaded and ready
+          start = function() {
+            $('#app').show()
+            counter = 0
+            interval = 100   
+            document.querySelectorAll('p')[0].innerHTML = ''
+            document.querySelectorAll('p')[1].innerHTML = ''
+            document.getElementById('start').style.display = 'none'
+
+
+      
+            window.setInterval(function(){ 
+              $('#progress').attr('aria-valuenow',  counter)
+              $('#progress').attr('aria-valuemax',  interval)
+              $('#progress').attr('style','width :'+  counter+'%')
+              // document.getElementById('countdown').innerHTML = ( interval-counter)
+              counter++
+              navigator.geolocation.getCurrentPosition(function(position,positionError) {
+                document.getElementById('log').innerHTML = document.getElementById('log').innerHTML + '<div>'+ position.coords.latitude + ' -- ' + position.coords.longitude + ' -- ' +'</div>'
+              });
+
+              // let acl = new Accelerometer({frequency: 60});
+              //   acl.addEventListener('reading', () => {
+              //     console.log("Acceleration along the X-axis " + acl.x);
+              //     console.log("Acceleration along the Y-axis " + acl.y);
+              //     console.log("Acceleration along the Z-axis " + acl.z);
+              //   });
+
+              $('#progress').attr('aria-valuenow',  counter)
+
+            },1000)
+          
+          }
+          
+          document.getElementById("start").addEventListener("click", start);
+
+        });
+      
+    </script>
+  </head>
+  <body class="bg-dark text-white">
+    <section class="content">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
+    <center>
+    <h1>Dairy Campus Data logger</h1>
+    <p>Deze applicatie is bedoeld om data te verzamelen tijdens een rondleiding op Dairy Campus. 
+       Bij het starten van deze logger wordt voor 6 uur data lokatie data van u opgeslagen.
+       Door het activeren van onze applicatie gaat u accoord dat uw data gebruikt wordt 
+       om vandaag inzicht te geven hoe wij data verzamelen op Dairy Campus. </p> 
+    <p>Na het starten van de app wordt u verzocht uw locatie te delen. 
+      Om deel te nemen aan dit experiment dient u accoord te gaan met het delen van locatie. </p>
+
+    <button id="start" class="btn btn-large btn-success">Start Applicatie</button>
+  
+
+    <section id="app" style="display:none">
+      <div class="progress">
+        <div  id="progress" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      
+      <h3 id="countdown"></h3>
+      <h3 id="id"></h3>
+      
+      
+
+      <div  class="takePhoto">
+        <form id="take" action="" method="POST"> 
+            <input type="file" id= "cap" name="personalPhoto" accept="image/*" capture ="camera" id="camera"><p>
+        </form>
+      </div>
+      <div id="log" styles="height:100px; overflow-y:hidden"></div>
+    </section>
+    <svg id="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.28 67.21"><defs><style>.cls-1{fill:none;}.cls-2{fill:#004a6d;}.cls-3{fill:#34b233;}</style></defs><title>WUR_RGB_standard</title><rect class="cls-1" width="227.28" height="67.21"></rect><path class="cls-2" d="M83.93,22L80.5,31.43H79.15L76.7,24.76C75.91,27,75,29.25,74.26,31.43H72.91L69.49,22h1.83l2.27,6.21L75.87,22h1.69l2.27,6.21L82.1,22h1.83Z" transform="translate(0)"></path><path class="cls-2" d="M111.14,24.58h-1.74V23.84a0.09,0.09,0,0,0-.09-0.09h-5.76a0.09,0.09,0,0,0-.09.09v5.77a0.09,0.09,0,0,0,.09.09h5.76a0.09,0.09,0,0,0,.09-0.09V27.84h-2.13V26.12h3.87v3.5a1.82,1.82,0,0,1-1.83,1.82h-5.76a1.81,1.81,0,0,1-1.82-1.82V23.84A1.81,1.81,0,0,1,103.55,22h5.76a1.82,1.82,0,0,1,1.83,1.82v0.73Z" transform="translate(0)"></path><path class="cls-2" d="M125.3,23.75h-6.91v2.12H124v1.72h-5.56v2.12h6.91v1.72h-8.65V22h8.65v1.72Z" transform="translate(0)"></path><path class="cls-2" d="M138.17,22h1.74v9.41H138l-5.8-6.9v6.9H130.5V22h1.88l5.79,6.9V22Z" transform="translate(0)"></path><path class="cls-2" d="M145,22h1.72v9.41H145V22Z" transform="translate(0)"></path><path class="cls-2" d="M159.69,22h1.74v9.41h-1.88l-5.8-6.9v6.9H152V22h1.88l5.79,6.9V22Z" transform="translate(0)"></path><path class="cls-2" d="M176,24.58h-1.74V23.84a0.09,0.09,0,0,0-.09-0.09h-5.76a0.09,0.09,0,0,0-.09.09v5.77a0.09,0.09,0,0,0,.09.09h5.76a0.09,0.09,0,0,0,.09-0.09V27.84h-2.13V26.12H176v3.5a1.82,1.82,0,0,1-1.83,1.82h-5.76a1.81,1.81,0,0,1-1.82-1.82V23.84A1.81,1.81,0,0,1,168.37,22h5.76A1.82,1.82,0,0,1,176,23.84v0.73Z" transform="translate(0)"></path><path class="cls-2" d="M189.95,23.75H183v2.12h5.57v1.72H183v2.12h6.91v1.72H181.3V22h8.65v1.72Z" transform="translate(0)"></path><path class="cls-2" d="M202.65,22h1.74v9.41h-1.88l-5.8-6.9v6.9H195V22h1.88l5.79,6.9V22Z" transform="translate(0)"></path><path class="cls-2" d="M95.32,23.84C94.95,22.73,94.51,22,93.51,22H90.67c-1,0-1.44.71-1.82,1.82l-2.73,7.59h1.78l1.14-3.16h6.09l1.15,3.16h1.75Zm-5.68,2.7,0.94-2.7c0-.06,0-0.09.09-0.09h2.86c0.05,0,.06,0,0.09.09l0.94,2.7H89.64Z" transform="translate(0)"></path><path class="cls-3" d="M74.88,38.85h0.84v4.56a1,1,0,0,1-1,1H71.15a1,1,0,0,1-1-1V38.85H71v4.56a0.17,0.17,0,0,0,.17.17h3.56a0.17,0.17,0,0,0,.17-0.17V38.85Z" transform="translate(0)"></path><path class="cls-3" d="M82.5,38.85h0.83v5.57h-1L78.61,40v4.45H77.77V38.85h1L82.5,43.3V38.85Z" transform="translate(0)"></path><path class="cls-3" d="M85.42,38.85h0.83v5.57H85.42V38.85Z" transform="translate(0)"></path><path class="cls-3" d="M93.49,38.85h1l-3.21,5.57H90.41L87.2,38.85h1l2.67,4.62Z" transform="translate(0)"></path><path class="cls-3" d="M100.32,39.68H96.05v1.53h3.43V42H96.05v1.53h4.27v0.84h-5.1V38.85h5.1v0.83Z" transform="translate(0)"></path><path class="cls-3" d="M107.89,41.42a1,1,0,0,1-1,1h-0.56l1.57,1.87v0.12h-1l-1.67-2h-1.9l-0.17,0v2h-0.83V38.85h4.56a1,1,0,0,1,1,1v1.56Zm-4.73-1.73v1.9h3.73a0.17,0.17,0,0,0,.17-0.17V39.86a0.17,0.17,0,0,0-.17-0.17h-3.73Z" transform="translate(0)"></path><path class="cls-3" d="M153.24,41.42a1,1,0,0,1-1,1h-0.56l1.57,1.87v0.12h-1l-1.67-2h-1.9l-0.17,0v2h-0.83V38.85h4.56a1,1,0,0,1,1,1v1.56Zm-4.73-1.73v1.9h3.73a0.17,0.17,0,0,0,.17-0.17V39.86a0.17,0.17,0,0,0-.17-0.17h-3.73Z" transform="translate(0)"></path><path class="cls-3" d="M189.63,41.42a1,1,0,0,1-1,1h-0.56l1.57,1.87v0.12h-1l-1.67-2h-1.9l-0.17,0v2h-0.84V38.85h4.56a1,1,0,0,1,1,1v1.56Zm-4.73-1.73v1.9h3.73a0.17,0.17,0,0,0,.17-0.17V39.86a0.17,0.17,0,0,0-.17-0.17H184.9Z" transform="translate(0)"></path><path class="cls-3" d="M115.45,40.18h-0.83V39.85a0.17,0.17,0,0,0-.17-0.17h-3.56a0.17,0.17,0,0,0-.17.17V41a0.17,0.17,0,0,0,.17.17h3.56a1,1,0,0,1,1,1v1.19a1,1,0,0,1-1,1h-3.56a1,1,0,0,1-1-1V43.08h0.83v0.32a0.17,0.17,0,0,0,.17.17h3.56a0.17,0.17,0,0,0,.17-0.17V42.22a0.17,0.17,0,0,0-.17-0.17h-3.56a1,1,0,0,1-1-1V39.85a1,1,0,0,1,1-1h3.56a1,1,0,0,1,1,1v0.33Z" transform="translate(0)"></path><path class="cls-3" d="M117.49,38.85h0.83v5.57h-0.83V38.85Z" transform="translate(0)"></path><path class="cls-3" d="M125.26,38.85v0.83H122.9v4.73h-0.83V39.68H119.7V38.85h5.57Z" transform="translate(0)"></path><path class="cls-3" d="M131.81,38.85l-2.57,3.48v2.09h-0.83V42.33l-2.57-3.48h1l2,2.54,2-2.54h1Z" transform="translate(0)"></path><path class="cls-3" d="M160.39,39.68h-4.27v1.53h3.43V42h-3.43v1.53h4.27v0.84h-5.1V38.85h5.1v0.83Z" transform="translate(0)"></path><path class="cls-3" d="M167.65,40.18h-0.83V39.85a0.17,0.17,0,0,0-.17-0.17h-3.55a0.17,0.17,0,0,0-.17.17V41a0.17,0.17,0,0,0,.17.17h3.55a1,1,0,0,1,1,1v1.19a1,1,0,0,1-1,1h-3.55a1,1,0,0,1-1-1V43.08h0.83v0.32a0.17,0.17,0,0,0,.17.17h3.55a0.17,0.17,0,0,0,.17-0.17V42.22a0.17,0.17,0,0,0-.17-0.17h-3.55a1,1,0,0,1-1-1V39.85a1,1,0,0,1,1-1h3.55a1,1,0,0,1,1,1v0.33Z" transform="translate(0)"></path><path class="cls-3" d="M174.81,39.68h-4.26v1.53H174V42h-3.43v1.53h4.26v0.84h-5.1V38.85h5.1v0.83Z" transform="translate(0)"></path><path class="cls-3" d="M180.15,38.85a1.24,1.24,0,0,1,1.09,1l1.62,4.56H182l-0.73-1.95h-3.86l-0.71,1.95h-0.84l1.68-4.56a1.11,1.11,0,0,1,1-1h1.62ZM181,41.63l-0.69-1.78a0.19,0.19,0,0,0-.17-0.17h-1.62c-0.09,0-.12.05-0.17,0.17l-0.67,1.78H181Z" transform="translate(0)"></path><path class="cls-3" d="M192.52,39.68a0.17,0.17,0,0,0-.17.17v3.56a0.17,0.17,0,0,0,.17.17h4.54v0.84h-4.54a1,1,0,0,1-1-1V39.85a1,1,0,0,1,1-1h4.54v0.83h-4.54Z" transform="translate(0)"></path><path class="cls-3" d="M204.4,38.85v5.57h-0.83V42h-4v2.36H198.7V38.85h0.83v2.36h4V38.85h0.83Z" transform="translate(0)"></path><path class="cls-3" d="M142.6,43.59l-1-.61v-1.6h-0.84v1.07l-3.06-1.92h0a0.17,0.17,0,0,1-.09-0.15V39.86a0.17,0.17,0,0,1,.17-0.17h2.06a0.17,0.17,0,0,1,.17.17v0.37h0.83V39.69a1,1,0,0,0-1-.83h-2.06a1,1,0,0,0-1,1v0.63a0.64,0.64,0,0,0,.43.54h-0.15c-0.56,0-1,.17-1,0.72v1.66a1,1,0,0,0,1,1h3.56a1,1,0,0,0,.94-0.66h0l1,0.66V43.59Zm-1.82-.18a0.17,0.17,0,0,1-.17.17h-3.55a0.17,0.17,0,0,1-.17-0.17V41.75a0.17,0.17,0,0,1,0-.07,0.2,0.2,0,0,1,.19-0.1h1l2.68,1.69v0.14Z" transform="translate(0)"></path><path class="cls-2" d="M50.3,50.54" transform="translate(0)"></path><path class="cls-2" d="M64.1,44.49c0.54-.5-1.21-1.08-1.21-1.08s-1.86-.86-9.26-1.46v2.54H42.2V41.57c-2.28-.06-6.78,0-9.93,0v2.92H20.87V41.94a72.36,72.36,0,0,0-8.22,1s-0.55.46-.62,0.5c-0.61.41,0,.57,0.43,0.77,0.16,0.08.17,0.13,0.11,0.29s-0.43.21-.35,0.44c0.15,0.48.84,0,.8,0.65s-1.72.32-1.88,1,0.61,0,.61,1.1,0.76,2.1,2.91,2.63c0.51,0.13,2.91.09,1.67,0.8a3.19,3.19,0,0,1-.81.09,1.5,1.5,0,0,0-.93.22c-0.23.33,0.26,0.33,0.19,0.64-0.28,0-.88,0-0.62.5a1,1,0,0,0,.83.36,3.92,3.92,0,0,1,1.57.09c-0.75.14-1.42,0.92,1.39,0.84,0.06,0.43.82,0.39,1.08,0.33,17.52-3.88,25.09-2.23,25.15-3.3-0.24-.53-2.71-0.47-3.12-0.49-1.6-.08-5,0.09-4.81-0.32,0.09-1,17.85-.72,15.77-0.13-0.09,0-1.34.23-1.5,0.32-1,.51,2.72.62,3.1,0.65s1.54,0,1.35.49c-0.06.15-1.38,0-1.33,0.2a4.65,4.65,0,0,0,.87.2c0.53,0.84-6.53.42-10.18,0.5-1.07,0-3.17.14-4.26,0.29-1.85.25-.27,0.68,2.6,0.95,1.54,0.14,9.46.78,16.18,1.66,2,0.37,2.62-.63,2.17-0.9-0.26-.15.85-0.71-0.39-1.24-0.79-.34-0.14-0.47-0.09-0.46s1.71,0.42,1.12-.12c-0.38-.35.26-0.14,0.38-0.15,1.49-.11,1.14-0.68,1.24-0.58C62.82,51.31,64,51,63.75,50c-0.08-.28-1.79-0.23-0.67-0.46,0.13,0,1.69,0,.24-0.84a3.76,3.76,0,0,0-1.14-.32c-1.08-.24-0.27-0.78.27-0.7a0.94,0.94,0,0,0,1.2-1C63.51,45.89,63.22,44.66,64.1,44.49Z" transform="translate(0)"></path><polygon class="cls-3" points="22.57 18.51 22.57 44.49 32.27 44.49 32.27 28.3 42.2 28.3 42.2 44.49 51.9 44.49 51.9 18.51 22.57 18.51"></polygon></svg>
+  </section>    
+  </center>
+  </body>
+</html>
