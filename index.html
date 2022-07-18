@@ -33,7 +33,7 @@
               // document.getElementById('countdown').innerHTML = ( interval-counter)
               counter++
               navigator.geolocation.getCurrentPosition(function(position,positionError) {
-                document.getElementById('log').innerHTML = document.getElementById('log').innerHTML+ '<iframe src="https://dairycampus.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session +''" width="0" height="0"></iframe>'
+                document.getElementById('log').innerHTML = document.getElementById('log').innerHTML+ '<iframe src="https://dairycampus.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session +'" width="0" height="0"></iframe>'
                 //  + position.coords.longitude + ' -- ' +x + ' -- ' +y + ' -- ' +x +' --- '+ window.navigator.userAgent +' --<hr>'+document.getElementById('log').innerHTML 
               });
 
