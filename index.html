@@ -62,9 +62,8 @@
                 for (key in queue) {
                   url = queue[key]
                   track(url)
-                  delete queue.unshift(url)
-
                 }
+                queue = []
               }
 
             });
