@@ -20,43 +20,41 @@
             $('#app').show()
             counter = 0
             interval = 100   
+            visible = 1
+            queue = []
+            
             document.querySelectorAll('p')[0].innerHTML = ''
             document.querySelectorAll('p')[1].innerHTML = ''
             document.getElementById('start').style.display = 'none'
 
-            $.ajaxSetup({
-                  timeout:1000*10000 // in milliseconds 
-              });
-            onchange = function(data) {
-            
-             document.getElementById('log').innerHTML += data
+            onchange = function(data) {            
+              if (visible == 1) {
+                visible = 0
+              } else {
+                visible = 1
+              }
             }
             document.addEventListener("visibilitychange", onchange);
             
-            window.setInterval(function(){ 
-              $('#progress').attr('aria-valuenow',  counter)
-              $('#progress').attr('aria-valuemax',  interval)
-              $('#progress').attr('style','width :'+  counter+'%')
-              // document.getElementById('countdown').innerHTML = ( interval-counter)
+            window.setInterval(function() {  
               counter++
               navigator.geolocation.getCurrentPosition(function(position,positionError) {
                 
-                  url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session
+              url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session
+              queue.append(url)                
+      
+              document.getElementById('log').innerHTML += counter +'<hr>'
                 
-                var myImage = new Image(0, 0);
-                myImage.src = url
-                document.body.appendChild(myImage);
-                
-//                   $.get( url, function( data ) {
-                    
-//                     console.log( "Load was performed." );
-//                   });   
-                
-                  document.getElementById('log').innerHTML += counter +'<hr>'
-                
-                //document.getElementById('log').innerHTML = document.getElementById('log').innerHTML+ '<iframe src="https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session +'" width="0" height="0"></iframe>'
-                //  + position.coords.longitude + ' -- ' +x + ' -- ' +y + ' -- ' +x +' --- '+ window.navigator.userAgent +' --<hr>'+document.getElementById('log').innerHTML 
-              });
+              if (visible == 1) {
+                for (url in queue) {
+                  var myImage = new Image(0, 0);
+                  myImage.src = url
+                  document.body.appendChild(myImage);
+                  delete queue[url]
+                }
+              }
+
+            });
 
 //               acl = new Accelerometer({frequency: 60});
 //                 acl.addEventListener('reading', () => {
