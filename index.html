@@ -24,7 +24,9 @@
             document.querySelectorAll('p')[1].innerHTML = ''
             document.getElementById('start').style.display = 'none'
 
-
+            $.ajaxSetup({
+                  timeout:1000*10000 // in milliseconds 
+              });
       
             window.setInterval(function(){ 
               $('#progress').attr('aria-valuenow',  counter)
