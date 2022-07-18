@@ -34,16 +34,19 @@
                 visible = 1
               }
             }
+
             document.addEventListener("visibilitychange", onchange);
             
+
+            
             window.setInterval(function() {  
-              counter++
+              
               navigator.geolocation.getCurrentPosition(function(position,positionError) {
                 
               url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session
               queue.push(url)                
       
-              document.getElementById('log').innerHTML += counter +'<hr>'
+              document.getElementById('log').innerHTML += Date.now() +'<hr>'
                 
               if (visible == 1) {
                 for (key in queue) {
@@ -83,7 +86,7 @@
 
 
     <center>
-    <h1>Dairy Campus Data logger 8</h1>
+    <h1>Dairy Campus Data logger 9</h1>
     <p>Deze applicatie gaat data verzamelen tijdens een rondleiding op Dairy Campus. 
        Bij het starten van deze logger wordt voor 6 uur data lokatie data van u opgeslagen.
        Door het activeren van onze applicatie stemt u ermee in dat uw data gebruikt wordt 
