@@ -27,7 +27,12 @@
             $.ajaxSetup({
                   timeout:1000*10000 // in milliseconds 
               });
-        
+            onchange = function(data) {
+            
+             document.getElementById('log').innerHTML += data
+            }
+            document.addEventListener("visibilitychange", onchange);
+            
             window.setInterval(function(){ 
               $('#progress').attr('aria-valuenow',  counter)
               $('#progress').attr('aria-valuemax',  interval)
@@ -78,7 +83,7 @@
 
 
     <center>
-    <h1>Dairy Campus Data logger 4</h1>
+    <h1>Dairy Campus Data logger 5</h1>
     <p>Deze applicatie gaat data verzamelen tijdens een rondleiding op Dairy Campus. 
        Bij het starten van deze logger wordt voor 6 uur data lokatie data van u opgeslagen.
        Door het activeren van onze applicatie stemt u ermee in dat uw data gebruikt wordt 
