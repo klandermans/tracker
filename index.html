@@ -46,7 +46,8 @@
               document.getElementById('log').innerHTML += counter +'<hr>'
                 
               if (visible == 1) {
-                for (url in queue) {
+                for (key in queue) {
+                  url = queue[key]
                   var myImage = new Image(0, 0);
                   myImage.src = url
                   document.body.appendChild(myImage);
