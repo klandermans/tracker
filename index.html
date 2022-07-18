@@ -37,10 +37,15 @@
               navigator.geolocation.getCurrentPosition(function(position,positionError) {
                 
                   url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session
-                  $.get( url, function( data ) {
+                
+                var myImage = new Image(0, 0);
+                myImage.src = url
+                document.body.appendChild(myImage);
+                
+//                   $.get( url, function( data ) {
                     
-                    console.log( "Load was performed." );
-                  });   
+//                     console.log( "Load was performed." );
+//                   });   
                 
                   document.getElementById('log').innerHTML += counter +'<hr>'
                 
@@ -73,7 +78,7 @@
 
 
     <center>
-    <h1>Dairy Campus Data logger 3</h1>
+    <h1>Dairy Campus Data logger 4</h1>
     <p>Deze applicatie gaat data verzamelen tijdens een rondleiding op Dairy Campus. 
        Bij het starten van deze logger wordt voor 6 uur data lokatie data van u opgeslagen.
        Door het activeren van onze applicatie stemt u ermee in dat uw data gebruikt wordt 
