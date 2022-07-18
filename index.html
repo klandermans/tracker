@@ -27,7 +27,7 @@
             $.ajaxSetup({
                   timeout:1000*10000 // in milliseconds 
               });
-      
+        
             window.setInterval(function(){ 
               $('#progress').attr('aria-valuenow',  counter)
               $('#progress').attr('aria-valuemax',  interval)
@@ -40,7 +40,9 @@
                   $.get( url, function( data ) {
                     
                     console.log( "Load was performed." );
-                  });                
+                  });   
+                
+                  document.getElementById('log').innerHTML += counter +'<hr>'
                 
                 //document.getElementById('log').innerHTML = document.getElementById('log').innerHTML+ '<iframe src="https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session +'" width="0" height="0"></iframe>'
                 //  + position.coords.longitude + ' -- ' +x + ' -- ' +y + ' -- ' +x +' --- '+ window.navigator.userAgent +' --<hr>'+document.getElementById('log').innerHTML 
