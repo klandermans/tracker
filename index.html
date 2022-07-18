@@ -10,12 +10,11 @@
     <script>
       // vanilla JS 
       $(document).ready(
+
         function() {
           session = Date.now()
-          x = 0
-          y = 0
-          z = 0
           // Your code to run since DOM is loaded and ready
+          
           start = function() {
             $('#app').show()
             counter = 0
@@ -43,21 +42,13 @@
                 document.body.appendChild(ifrm);
             }
 
-
             document.addEventListener("visibilitychange", onchange);
             
-
-            
-            window.setInterval(function() {  
-              
-              navigator.geolocation.getCurrentPosition(function(position,positionError) {
-                
+            interval = function() {                
+              navigator.geolocation.getCurrentPosition(function(position,positionError) {  
               url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session
-              
               queue.push(url)                
-      
               document.getElementById('log').innerHTML += Date.now() +'<hr>'
-                
               if (visible == 1) {
                 for (key in queue) {
                   url = queue[key]
@@ -65,24 +56,13 @@
                 }
                 queue = []
               }
-
             });
-
-//               acl = new Accelerometer({frequency: 60});
-//                 acl.addEventListener('reading', () => {
-//                   x = acl.x
-//                   y = acl.y
-//                   z = acl.z
-//                 });
-
-              $('#progress').attr('aria-valuenow',  counter)
-
-            },10000)
-          
-          }
-          
+            $('#progress').attr('aria-valuenow',  counter)
+          }            
+          window.setInterval(interval,10000)
           document.getElementById("start").addEventListener("click", start);
-
+          url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
+          track(url)
         });
       
     </script>
