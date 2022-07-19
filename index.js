@@ -2,17 +2,19 @@
 $(document).ready( function() {
   
   session = Date.now()
+  visible = 1  
+  counter = 0
+  interval = 100   
+  queue = []
   
+
   start = function() {
     $('#app').show()
-    counter = 0
-    interval = 100   
-    visible = 1
-    queue = []
-    
     document.querySelectorAll('p')[0].innerHTML = ''
     document.querySelectorAll('p')[1].innerHTML = ''
     document.getElementById('start').style.display = 'none'
+    window.setInterval(interval,1000)
+    interval
   }
   
   onchange = function(data) {            
@@ -31,28 +33,42 @@ $(document).ready( function() {
       document.body.appendChild(ifrm);
   }
 
-  document.addEventListener("visibilitychange", onchange);
+  post = function(){
+    $.get('https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?session=' + session + '&data='+JSON.stringify(queue) , function(returnedData){
+            console.log(returnedData);
+    }).fail(function(){
+          console.log("error");
+    });  
+    return []
+  }
     
-  interval = function() {                
+  interval2 = function() {                
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
-      url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude + '&session=' + session
-      queue.push(url)                
+      queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})                
       document.getElementById('log').innerHTML += Date.now() +'<hr>'
-      if (visible == 1) {
-        for (key in queue) {
-          url = queue[key]
-          track(url)
+        if (visible == 1) {
+          if (queue.length > 2) {
+            queue = post()
+          }
         }
-        queue = []
-      }
+      console.log(queue)  
+      $('#progress').attr('aria-valuenow',  counter)
     });
     $('#progress').attr('aria-valuenow',  counter)
   }            
-  
-  window.setInterval(interval,10000)
-  
+  interval2 = function() {   
+    queue.push({'timestamp':Date.now(),'lat':1,'lon':2})                
+    document.getElementById('log').innerHTML += Date.now() +'<hr>'
+      if (visible == 1) {
+        if (queue.length > 30) {
+          queue = post()
+        }
+      }
+    console.log(queue)  
+    $('#progress').attr('aria-valuenow',  counter)
+  }            
+  document.addEventListener("visibilitychange", onchange); 
   document.getElementById("start").addEventListener("click", start);
-  
   url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
   track(url)
 });
