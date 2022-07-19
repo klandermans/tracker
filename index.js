@@ -42,17 +42,19 @@ $(document).ready( function() {
     return []
   }
     
-  interval2 = function() {                
+  interval = function() {                
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
+      
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})                
       document.getElementById('log').innerHTML += Date.now() +'<hr>'
         if (visible == 1) {
-          if (queue.length > 2) {
+          if (queue.length > 30) {
             queue = post()
           }
         }
       console.log(queue)  
       $('#progress').attr('aria-valuenow',  counter)
+      
     });
     $('#progress').attr('aria-valuenow',  counter)
   }            
