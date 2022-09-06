@@ -34,7 +34,7 @@ $(document).ready( function() {
   }
 
   post = function(){
-    $.get('https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?session=' + session + '&data='+JSON.stringify(queue) , function(returnedData){
+    $.get('https://dairycampus.azurewebsites.net/dcdata/htmltracker?session=' + session + '&data='+JSON.stringify(queue) , function(returnedData){
             console.log(returnedData);
     }).fail(function(){
           console.log("error");
@@ -71,7 +71,7 @@ $(document).ready( function() {
   }            
   document.addEventListener("visibilitychange", onchange); 
   document.getElementById("start").addEventListener("click", start);
-  url = 'https://dairycampus-test.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
+  url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
   track(url)
 });
 
