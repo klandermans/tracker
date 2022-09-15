@@ -17,7 +17,7 @@ $(document).ready( function() {
   var svg = document.getElementById("svg");
   var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");    
   polygon.setAttribute("fill", "none");
-  polygon.setAttribute("stroke-width", "0.05px");
+  polygon.setAttribute("stroke-width", "0.1px");
   polygon.setAttribute("stroke", "#34b233");
   
   svg.appendChild(polygon);
