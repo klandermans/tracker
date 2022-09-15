@@ -112,7 +112,3 @@ $(document).ready( function() {
 });
 
 
-
-$(document).ready(function(){
-  document.getElementById("start").addEventListener("click", start);
-});   
