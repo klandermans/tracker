@@ -24,25 +24,25 @@
 
 
     <intro>
-      <h1>Dairy Campus Data logger 16</h1>
+      <h1>Dairy Campus Data logger 18</h1>
       <p>Deze applicatie gaat data verzamelen tijdens een rondleiding op Dairy Campus. 
         Door het activeren van onze applicatie stemt u ermee in dat uw data gebruikt wordt 
         om vandaag inzicht te geven hoe wij data verzamelen op Dairy Campus. </p> 
       <p>Om deel te nemen aan dit experiment dient u accoord te gaan met het delen van locatie. </p>
-    <button id="start" class="btn btn-large btn-success">Start Applicatie</button>
+      <button id="start" class="btn btn-large btn-success">Start Applicatie</button>
     </intro>  
+
     <app id="app" style="display:none">
-
      <h1>app</h1>
-
-      <script src="https://unpkg.com/html5-qrcode" type="text/javascript">
-
+        <script src="https://unpkg.com/html5-qrcode" type="text/javascript">
 
         <div id="qr-reader" style="width:500px; height:200px; background-color:grey"></div>
         <div id="qr-reader-results"></div>
     
     
     <script>
+      $(document).ready(function(){
+      
         function docReady(fn) {
             // see if DOM is already available
             if (document.readyState === "complete"
@@ -70,6 +70,7 @@
                 "qr-reader", { fps: 10, qrbox: 250 });
             html5QrcodeScanner.render(onScanSuccess);
         });
+      })
     </script>
       <div id="log" styles="height:100px; overflow-y:hidden"></div>
     </app>
