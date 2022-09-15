@@ -1,7 +1,15 @@
 // vanilla JS 
 $(document).ready( function() {
   
-  session = Date.now()
+
+  if (document.cookie) {
+    session = document.cookie
+  } else {
+    session = Date.now()
+    document.cookie = session
+  }
+  
+  
   visible = 1  
   counter = 0
   interval = 100   
@@ -45,17 +53,12 @@ $(document).ready( function() {
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})                
-      document.getElementById('log').innerHTML += Date.now() +'<hr>'
-        if (visible == 1) {
-          if (queue.length > 30) {
-            queue = post()
-          }
-        }
-      console.log(queue)  
-      $('#progress').attr('aria-valuenow',  counter)
+      
+        
+    
       
     });
-    $('#progress').attr('aria-valuenow',  counter)
+    
   }            
   interval2 = function() {   
     queue.push({'timestamp':Date.now(),'lat':1,'lon':2})                
