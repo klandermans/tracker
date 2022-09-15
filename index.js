@@ -2,11 +2,11 @@
 $(document).ready( function() {
   
 
-  if (document.cookie) {
-    session = document.cookie
+  if ('token' in window.localStorage) {
+    session = window.localStorage['token']
   } else {
     session = Date.now()
-    document.cookie = session
+    window.localStorage['token'] = session
   }
   
   visible = 1  
@@ -94,7 +94,9 @@ $(document).ready( function() {
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
       draw(position.coords.latitude, position.coords.longitude)
     });
-
+    if (queue.length > 30) {
+      queue = post()
+    }
     // draw(X=0,Y=0)
   }            
 
