@@ -94,6 +94,7 @@ $(document).ready( function() {
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
       draw(position.coords.latitude, position.coords.longitude)
     });
+    
     if (queue.length > 30) {
       queue = post()
     }
