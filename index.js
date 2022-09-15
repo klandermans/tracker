@@ -90,7 +90,9 @@ $(document).ready( function() {
       point.x = x;
       point.y = y;
       polygon.points.appendItem(point);
-      console.log(x,y)
+      
+      document.body.innerHTML += (x + ' ' + y + ' ' +  position.coords.latitude + ' '+  position.coords.longitude+' <br>')
+
          
      
     });
