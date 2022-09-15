@@ -9,7 +9,6 @@ $(document).ready( function() {
     document.cookie = session
   }
   
-  
   visible = 1  
   counter = 0
   interval = 100   
@@ -21,27 +20,21 @@ $(document).ready( function() {
   polygon.setAttribute("stroke-width", "0.5px");
   polygon.setAttribute("stroke", "green");
   
-  
   svg.appendChild(polygon);
 
 
 
-
   start = function() {
-    $('app').show()
-    document.querySelectorAll('#intro')[0].innerHTML = ''
+    
+    $('#intro').slideUp("fast");
+    $('app').slideDown('fast')
     //ditmoetw eer aan
     window.setInterval(interval,1000)
     interval
+    
   }
-  
-  onchange = function(data) {            
-    if (visible == 1) {
-      visible = 0
-    } else {
-      visible = 1
-    }
-  }
+
+
 
   track = function(url) {
       var ifrm = document.createElement("iframe");
@@ -63,11 +56,11 @@ $(document).ready( function() {
 
 
   draw = function(X,Y) {
-
-    xmin = 52.962603
-    ymin = 5.783837
-    xmax = 52.962209 
-    ymax = 5.784504 
+    
+    xmin = 52.962184
+    ymin = 5.783932
+    xmax = 52.962774 
+    ymax = 5.784624
 
     if (X==0) {
       X=(xmax-xmin) * Math.random() + xmin
@@ -77,8 +70,6 @@ $(document).ready( function() {
     x = X
     y = Y
 
-    
-    
     x = x - xmin
     y = y - ymin
     
@@ -94,24 +85,36 @@ $(document).ready( function() {
     point.x = x;
     point.y = y;
     polygon.points.appendItem(point);
+    localStorage['points'] += x + ',' + y + ' '
+    console.log( x + ',' + y + ' ')
     
-    // document.body.innerHTML += (x + ' ' + y + ' ' +  X + ' '+  Y+' <br>')
-
   }
 
   interval = function() {   
 
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
-      
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
       draw(position.coords.latitude, position.coords.longitude)
-  
-     
     });
+
     // draw(X=0,Y=0)
   }            
 
   url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
   track(url)
+
+
+  if ('points' in window.localStorage) {
+    polygon.setAttribute("points",  window.localStorage['points']);
+    start()
+  } else {
+    window.localStorage['points'] = '';
+  }
+
 });
 
+
+
+$(document).ready(function(){
+  document.getElementById("start").addEventListener("click", start);
+});   
