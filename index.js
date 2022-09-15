@@ -16,10 +16,8 @@ $(document).ready( function() {
   queue = [] 
 
   start = function() {
-    $('#app').show()
-    document.querySelectorAll('p')[0].innerHTML = ''
-    document.querySelectorAll('p')[1].innerHTML = ''
-    document.getElementById('start').style.display = 'none'
+    $('app').show()
+    document.querySelectorAll('intro').style.display = 'none'
     window.setInterval(interval,1000)
     interval
   }
@@ -56,17 +54,6 @@ $(document).ready( function() {
      
     });
     
-  }            
-  interval2 = function() {   
-    queue.push({'timestamp':Date.now(),'lat':1,'lon':2})                
-    document.getElementById('log').innerHTML += Date.now() +'<hr>'
-      if (visible == 1) {
-        if (queue.length > 30) {
-          queue = post()
-        }
-      }
-    console.log(queue)  
-    $('#progress').attr('aria-valuenow',  counter)
   }            
 
   url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
