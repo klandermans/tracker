@@ -72,6 +72,11 @@ $(document).ready( function() {
       x = x / (xmax - xmin)
       y = y / (ymax - ymin)
       
+      x = x * 100
+      x = Math.Floor(x)
+      y = y * 100
+      y = Math.Floor(y)
+      
       var point = svg.createSVGPoint();
       point.x = x;
       point.y = y;
