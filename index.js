@@ -102,7 +102,7 @@ $(document).ready( function() {
   track(url)
 
 
-  if ('points' in window.localStorage) {
+  if ('points' in window.localStorage && window.localStorage['points'].length > 10) {
     polygon.setAttribute("points",  window.localStorage['points']);
     start()
   } else {
