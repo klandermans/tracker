@@ -90,12 +90,12 @@ $(document).ready( function() {
 
   interval = function() {   
 
-    // navigator.geolocation.getCurrentPosition(function(position,positionError) {  
-    //   queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
-    //   draw(position.coords.latitude, position.coords.longitude)
-    // });
+    navigator.geolocation.getCurrentPosition(function(position,positionError) {  
+      queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
+      draw(position.coords.latitude, position.coords.longitude)
+    });
 
-    draw(X=0,Y=0)
+    // draw(X=0,Y=0)
   }            
 
   url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
