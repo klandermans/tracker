@@ -55,7 +55,8 @@ $(document).ready( function() {
     return []
   }
     
-  interval = function() {                
+  interval = function() {   
+
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
@@ -66,21 +67,30 @@ $(document).ready( function() {
       xmax = 52.962209 
       ymax = 5.784504 
 
-      x = position.coords.latitude - xmin
-      y = position.coords.longitude - ymin
+      x = 0
+      y = 0
+
+      if (position.coords.latitude > 0 && position.coords.latitude < 0) {
+        x = position.coords.latitude
+        y = position.coords.longitude
+      }
+
+      x = x - xmin
+      y = y - ymin
       
       x = x / (xmax - xmin)
       y = y / (ymax - ymin)
       
       x = x * 100
-      x = Math.Floor(x)
+      x = Math.floor(x)
       y = y * 100
-      y = Math.Floor(y)
-      
+      y = Math.floor(y)
+
       var point = svg.createSVGPoint();
       point.x = x;
       point.y = y;
       polygon.points.appendItem(point);
+      console.log(x,y)
          
      
     });
