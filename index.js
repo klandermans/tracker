@@ -17,6 +17,11 @@ $(document).ready( function() {
 
   var svg = document.getElementById("svg");
   var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");    
+  polygon.setAttribute("fill", "none");
+  polygon.setAttribute("stroke-width", "0.5px");
+  polygon.setAttribute("stroke", "green");
+  
+  
   svg.appendChild(polygon);
 
 
@@ -55,48 +60,55 @@ $(document).ready( function() {
     return []
   }
     
+
+
+  draw = function(X,Y) {
+
+    xmin = 52.962603
+    ymin = 5.783837
+    xmax = 52.962209 
+    ymax = 5.784504 
+
+    if (X==0) {
+      X=(xmax-xmin) * Math.random() + xmin
+      Y=(ymax-ymin) * Math.random() + ymin
+    }
+
+    x = X
+    y = Y
+
+    
+    
+    x = x - xmin
+    y = y - ymin
+    
+    x = x / (xmax - xmin)
+    y = y / (ymax - ymin)
+    
+    x = x * 100
+    x = Math.floor(x)
+    y = y * 100
+    y = Math.floor(y)
+
+    var point = svg.createSVGPoint();
+    point.x = x;
+    point.y = y;
+    polygon.points.appendItem(point);
+    
+    // document.body.innerHTML += (x + ' ' + y + ' ' +  X + ' '+  Y+' <br>')
+
+  }
+
   interval = function() {   
 
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
-
-
-      xmin = 52.962603
-      ymin = 5.783837
-      xmax = 52.962209 
-      ymax = 5.784504 
-
-      x = 0
-      y = 0
-
-      if (position.coords.latitude > 0 && position.coords.latitude < 0) {
-        x = position.coords.latitude
-        y = position.coords.longitude
-      }
-
-      x = x - xmin
-      y = y - ymin
-      
-      x = x / (xmax - xmin)
-      y = y / (ymax - ymin)
-      
-      x = x * 100
-      x = Math.floor(x)
-      y = y * 100
-      y = Math.floor(y)
-
-      var point = svg.createSVGPoint();
-      point.x = x;
-      point.y = y;
-      polygon.points.appendItem(point);
-      
-      document.body.innerHTML += (x + ' ' + y + ' ' +  position.coords.latitude + ' '+  position.coords.longitude+' <br>')
-
-         
+      draw(position.coords.latitude, position.coords.longitude)
+  
      
     });
-    
+    // draw(X=0,Y=0)
   }            
 
   url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
