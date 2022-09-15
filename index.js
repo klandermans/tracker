@@ -17,7 +17,7 @@ $(document).ready( function() {
 
   start = function() {
     $('app').show()
-    document.querySelectorAll('intro').style.display = 'none'
+    document.querySelectorAll('#intro').style.display = 'none'
     window.setInterval(interval,1000)
     interval
   }
