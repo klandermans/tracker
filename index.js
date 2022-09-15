@@ -95,7 +95,8 @@ $(document).ready( function() {
       draw(position.coords.latitude, position.coords.longitude)
     });
 
-    
+    queue.push({'timestamp':Date.now(),'lat':0,'lon':0})         
+
     queue = post(queue)
     
     // draw(X=0,Y=0)
