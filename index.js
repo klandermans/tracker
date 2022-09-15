@@ -42,7 +42,7 @@ $(document).ready( function() {
       document.body.appendChild(ifrm);
   }
 
-  post = function(){
+  post = function(queue){
     $.get('https://dairycampus.azurewebsites.net/dcdata/htmltracker?session=' + session + '&data='+JSON.stringify(queue) , function(returnedData){
             console.log(returnedData);
     }).fail(function(){
@@ -94,10 +94,10 @@ $(document).ready( function() {
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
       draw(position.coords.latitude, position.coords.longitude)
     });
+
     
-    if (queue.length > 30) {
-      queue = post()
-    }
+    queue = post(queue)
+    
     // draw(X=0,Y=0)
   }            
 
