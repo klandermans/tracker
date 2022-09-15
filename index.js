@@ -15,9 +15,17 @@ $(document).ready( function() {
   interval = 100   
   queue = [] 
 
+  var svg = document.getElementById("svg");
+  var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");    
+  svg.appendChild(polygon);
+
+
+
+
   start = function() {
     $('app').show()
-    document.querySelectorAll('#intro').style.display = 'none'
+    document.querySelectorAll('#intro')[0].innerHTML = ''
+    //ditmoetw eer aan
     window.setInterval(interval,1000)
     interval
   }
@@ -50,7 +58,25 @@ $(document).ready( function() {
   interval = function() {                
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       
-      queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})                
+      queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
+
+
+      xmin = 52.962603
+      ymin = 5.783837
+      xmax = 52.962209 
+      ymax = 5.784504 
+
+      x = position.coords.latitude - xmin
+      y = position.coords.longitude - ymin
+      
+      x = x / (xmax - xmin)
+      y = y / (ymax - ymin)
+      
+      var point = svg.createSVGPoint();
+      point.x = x;
+      point.y = y;
+      polygon.points.appendItem(point);
+         
      
     });
     
