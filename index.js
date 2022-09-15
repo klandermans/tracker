@@ -5,8 +5,7 @@ $(document).ready( function() {
   visible = 1  
   counter = 0
   interval = 100   
-  queue = []
-  
+  queue = [] 
 
   start = function() {
     $('#app').show()
@@ -25,7 +24,7 @@ $(document).ready( function() {
     }
   }
 
-  track= function(url) {
+  track = function(url) {
       var ifrm = document.createElement("iframe");
       ifrm.setAttribute("src", url);
       ifrm.style.width = "0px";
@@ -69,8 +68,7 @@ $(document).ready( function() {
     console.log(queue)  
     $('#progress').attr('aria-valuenow',  counter)
   }            
-  document.addEventListener("visibilitychange", onchange); 
-  document.getElementById("start").addEventListener("click", start);
+
   url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
   track(url)
 });
