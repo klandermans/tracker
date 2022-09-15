@@ -53,10 +53,7 @@ $(document).ready( function() {
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})                
-      
-        
-    
-      
+     
     });
     
   }            
