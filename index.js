@@ -93,12 +93,13 @@ $(document).ready( function() {
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
       draw(position.coords.latitude, position.coords.longitude)
+      queue = post(queue)
+
     });
 
-    queue.push({'timestamp':Date.now(),'lat':0,'lon':0})         
+    // queue.push({'timestamp':Date.now(),'lat':0,'lon':0})         
+    // queue = post(queue)
 
-    queue = post(queue)
-    
     // draw(X=0,Y=0)
   }            
 
