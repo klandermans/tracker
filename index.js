@@ -55,10 +55,11 @@ $(document).ready( function() {
 
   draw = function(X,Y) {
     
-    xmin = 52.962184
-    ymin = 5.783932
-    xmax = 52.962774 
-    ymax = 5.784624
+
+    xmin = 52.962031
+    ymin = 5.783855
+    xmax = 52.962851
+    ymax = 5.784645
 
     if (X==0) {
       X=(xmax-xmin) * Math.random() + xmin
