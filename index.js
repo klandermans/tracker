@@ -85,7 +85,9 @@ $(document).ready( function() {
     point.y = y;
     polygon.points.appendItem(point);
     localStorage['points'] += x + ',' + y + ' '
-    
+    counter = counter + 1
+    $('#counter').innerHTML=counter
+
     
   }
   range = function(start, stop, step=1) {
