@@ -56,10 +56,11 @@ $(document).ready( function() {
   draw = function(X,Y, z=0, speed=0, accuracy=0) {
      
     $('#status').html('lat:'+X+' lon:'+Y+' speed:'+speed+' z:'+z+  ' accuracy:'+accuracy)
-    xmin = 53.178327
+    xmin = 53.181175
     ymin = 5.754580
-    xmax = 53.181337
-    ymax = 5.763
+    xmax = 53.181223
+    ymax = 5.7612
+    
     
     if (X==0) {
       X=(xmax-xmin) * Math.random() + xmin
