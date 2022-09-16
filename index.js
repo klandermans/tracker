@@ -66,6 +66,7 @@ $(document).ready( function() {
      
     // leeuwarden
     xmin = 53.18
+    xmin = 53.175
     ymin = 5.754580
     xmax = 53.181223
     ymax = 5.7612
