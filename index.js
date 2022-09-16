@@ -142,17 +142,17 @@ $(document).ready( function() {
 
   interval = function() {   
 
-    // navigator.geolocation.getCurrentPosition(function(position,positionError) {  
-    //   queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
-    //   draw( position.coords.longitude,position.coords.latitude)
-    //   queue = post(queue)
+    navigator.geolocation.getCurrentPosition(function(position,positionError) {  
+      queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
+      draw( position.coords.longitude,position.coords.latitude)
+      queue = post(queue)
 
-    // });
+    });
 
-    // queue.push({'timestamp':Date.now(),'lat':0,'lon':0})         
-    // queue = post(queue)
-    console.log(1)
-    draw(X=0,Y=0)
+    queue.push({'timestamp':Date.now(),'lat':0,'lon':0})         
+    queue = post(queue)
+    // console.log(1)
+    // draw(X=0,Y=0)
     
   }            
 
