@@ -17,7 +17,7 @@ $(document).ready( function() {
   var svg = document.getElementById("svg");
   var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");    
   polygon.setAttribute("fill", "none");
-  polygon.setAttribute("stroke-width", "0.1px");
+  polygon.setAttribute("stroke-width", "1px");
   polygon.setAttribute("stroke", "#34b233");
   
   svg.appendChild(polygon);
@@ -71,20 +71,21 @@ $(document).ready( function() {
     x = X
     y = Y
 
-    if (X < xmin) {x = xmin}
-    if (X > xmax) {x = xmax}
-    if (Y < ymin) {y = ymin}
-    if (Y > ymax) {y = ymax}    
+    if (X < xmin) {x = xmin + 0.0000001}
+    if (X > xmax) {x = xmax - 0.0000001}
+    if (Y < ymin) {y = ymin + 0.0000001}
+    if (Y > ymax) {y = ymax - 0.0000001}    
 
     x = x - xmin
     y = y - ymin
-    
+    console.log(x)
     x = x / (xmax - xmin)
     y = y / (ymax - ymin)
     
-    x = x * 100
+    x = x * 500
     x = Math.floor(x)
-    y = y * 100
+    
+    y = y * 500
     y = Math.floor(y)
 
     var point = svg.createSVGPoint();
@@ -93,6 +94,7 @@ $(document).ready( function() {
 
     polygon.points.appendItem(point);
     localStorage['points'] += x + ',' + y + ' '
+    
     $('#status').html('lat:'+X+' lon:'+Y+' speed:'+speed+' z:'+z+  ' accuracy:'+accuracy +' x:'+x+' y:'+y)
     
 
@@ -120,9 +122,9 @@ $(document).ready( function() {
     })
 
     ret = "<center><table style='' cellpadding=0 cellspacing=0>"
-    for (x in range(0,100)) {
+    for (x in range(0,1000)) {
       ret += "<tr>"
-      for (y in range(0,100)) {
+      for (y in range(0,1000)) {
         
         color=""
         if (x in heatmap) {
