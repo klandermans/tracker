@@ -149,6 +149,7 @@ $(document).ready( function() {
     // draw(X=0,Y=0)
     counter = counter + 1
     $('#counter').html(counter)
+    $('#status').html({'timestamp':Date.now(),'lat':0,'lon':0}))
     
   }            
 
