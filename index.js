@@ -18,9 +18,18 @@ $(document).ready( function() {
   var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");    
   polygon.setAttribute("fill", "none");
   polygon.setAttribute("stroke-width", "1px");
-  polygon.setAttribute("stroke", "#34b233");
-  
+  polygon.setAttribute("stroke", "#34b233"); 
   svg.appendChild(polygon);
+
+  var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");    
+  circle.setAttribute("fill", "#004a6d");
+  circle.setAttribute("stroke-width", "5px");
+  circle.setAttribute("stroke", "#34b233"); 
+  circle.setAttribute("r", "10"); 
+  circle.setAttribute("cx", "0"); 
+  circle.setAttribute("cy", "0"); 
+  svg.appendChild(circle);
+  
 
 
 
@@ -92,6 +101,10 @@ $(document).ready( function() {
     point.x = x;
     point.y = y;
 
+    circle.setAttribute("cx", x); 
+    circle.setAttribute("cy", y); 
+    circle.setAttribute('animation','hideshow 10s ease infinite')
+
     polygon.points.appendItem(point);
     localStorage['points'] += x + ',' + y + ' '
     
@@ -146,7 +159,14 @@ $(document).ready( function() {
 
   interval = function() {   
 
-    navigator.geolocation.getCurrentPosition(function(position,positionError) {  
+
+    var geoOps = {
+      enableHighAccuracy: true,
+      timeout: 1 //10 seconds
+    }
+
+    navigator.geolocation.getCurrentPosition(function(position,positionError, geoOps) {  
+      console.log(positionError)
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
       draw( position.coords.latitude,  position.coords.longitude, position.coords.altitude, position.coords.speed, position.coords.accuracy)
       queue = post(queue)
@@ -159,7 +179,6 @@ $(document).ready( function() {
     // draw(X=0,Y=0)
     counter = counter + 1
     $('#counter').html(counter)
-    
   }            
 
   url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
@@ -172,7 +191,7 @@ $(document).ready( function() {
   } else {
     window.localStorage['points'] = '';
   }
-  // drawheatmap()
+  
   
 
   setInterval(function(){
