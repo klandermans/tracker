@@ -54,13 +54,13 @@ $(document).ready( function() {
 
 
   draw = function(X,Y) {
+     
+
+    xmin = 53.178327
+    ymin = 5.754580
+    xmax = 53.181337
+    ymax = 5.762392
     
-
-    xmin = 52.962031
-    ymin = 5.783855
-    xmax = 52.962851
-    ymax = 5.784645
-
     if (X==0) {
       X=(xmax-xmin) * Math.random() + xmin
       Y=(ymax-ymin) * Math.random() + ymin
@@ -85,23 +85,75 @@ $(document).ready( function() {
     point.y = y;
     polygon.points.appendItem(point);
     localStorage['points'] += x + ',' + y + ' '
-    // console.log( x + ',' + y + ' ')
+    
     
   }
+  range = function(start, stop, step=1) {
+    var a = [start], b = start;
+    while (b < stop) {
+        a.push(b += step || 1);
+    }
+    return a;
+  }
+
+
+
+  drawheatmap = function() {
+    heatmap = {}
+    total = 0
+    window.localStorage['points'].split(' ').forEach(function(point){
+      total = total + 1
+      x = Math.floor(point.split(',')[0])
+      y = Math.floor(point.split(',')[1])
+      if (x in heatmap) {
+        if (y in heatmap[x]) {
+          heatmap[x][y] += 1
+        } else {
+          heatmap[x][y] = 1
+        }
+      } else {  
+        heatmap[x] = {}
+        heatmap[x][y] = 1
+      }
+    })
+
+    ret = "<center><table style='' cellpadding=0 cellspacing=0>"
+    for (x in range(0,100)) {
+      ret += "<tr>"
+      for (y in range(0,100)) {
+        
+        color=""
+        if (x in heatmap) {
+          if (y in heatmap[x]) {
+            
+            color = "green; opacity:"+(heatmap[x][y] / total)
+          }
+        } 
+        ret += "<td style='background-color:"+color+ "; height:5px; width:5px'>"
+        ret += "</td>"
+      }
+      ret += "</tr>"
+    }
+    ret += "</table></center>"
+    $('heatmap')[0].innerHTML=ret
+
+  }
+  
 
   interval = function() {   
 
-    navigator.geolocation.getCurrentPosition(function(position,positionError) {  
-      queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
-      draw(position.coords.latitude, position.coords.longitude)
-      queue = post(queue)
+    // navigator.geolocation.getCurrentPosition(function(position,positionError) {  
+    //   queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
+    //   draw( position.coords.longitude,position.coords.latitude)
+    //   queue = post(queue)
 
-    });
+    // });
 
     // queue.push({'timestamp':Date.now(),'lat':0,'lon':0})         
     // queue = post(queue)
-
-    // draw(X=0,Y=0)
+    console.log(1)
+    draw(X=0,Y=0)
+    
   }            
 
   url = 'https://dairycampus.azurewebsites.net/dcdata/htmltracker?new=new&session=' + session
@@ -114,7 +166,8 @@ $(document).ready( function() {
   } else {
     window.localStorage['points'] = '';
   }
-
+  drawheatmap()
+  
 });
 
 
