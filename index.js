@@ -60,7 +60,9 @@ $(document).ready( function() {
     ymin = 5.754580
     xmax = 53.181223
     ymax = 5.7612
-    
+
+
+
     if (X==0) {
       X=(xmax-xmin) * Math.random() + xmin
       Y=(ymax-ymin) * Math.random() + ymin
@@ -68,6 +70,11 @@ $(document).ready( function() {
 
     x = X
     y = Y
+
+    if (X < xmin) {x = xmin}
+    if (X > xmax) {x = xmax}
+    if (Y < ymin) {y = ymin}
+    if (Y > ymax) {y = ymax}    
 
     x = x - xmin
     y = y - ymin
