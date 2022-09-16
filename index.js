@@ -55,14 +55,11 @@ $(document).ready( function() {
 
   draw = function(X,Y, z=0, speed=0, accuracy=0) {
      
-    
+    // leeuwarden
     xmin = 53.18
     ymin = 5.754580
     xmax = 53.181223
     ymax = 5.7612
-
-    
-    
     
     if (X==0) {
       X=(xmax-xmin) * Math.random() + xmin
@@ -78,14 +75,15 @@ $(document).ready( function() {
     x = x / (xmax - xmin)
     y = y / (ymax - ymin)
     
-    x = x * 1000
-    x = Math.floor(x)/10
-    y = y * 1000
-    y = Math.floor(y)/10
+    x = x * 100
+    x = Math.floor(x)
+    y = y * 100
+    y = Math.floor(y)
 
     var point = svg.createSVGPoint();
     point.x = x;
     point.y = y;
+
     polygon.points.appendItem(point);
     localStorage['points'] += x + ',' + y + ' '
     $('#status').html('lat:'+X+' lon:'+Y+' speed:'+speed+' z:'+z+  ' accuracy:'+accuracy +' x:'+x+' y:'+y)
