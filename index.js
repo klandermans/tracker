@@ -55,11 +55,13 @@ $(document).ready( function() {
 
   draw = function(X,Y, z=0, speed=0, accuracy=0) {
      
-    $('#status').html('lat:'+X+' lon:'+Y+' speed:'+speed+' z:'+z+  ' accuracy:'+accuracy)
+    
     xmin = 53.18
     ymin = 5.754580
     xmax = 53.181223
     ymax = 5.7612
+
+    
     
     
     if (X==0) {
@@ -86,7 +88,7 @@ $(document).ready( function() {
     point.y = y;
     polygon.points.appendItem(point);
     localStorage['points'] += x + ',' + y + ' '
-    
+    $('#status').html('lat:'+X+' lon:'+Y+' speed:'+speed+' z:'+z+  ' accuracy:'+accuracy +' x:'+x+' y:'+y)
     
 
   }
