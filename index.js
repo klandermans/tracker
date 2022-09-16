@@ -75,10 +75,10 @@ $(document).ready( function() {
     x = x / (xmax - xmin)
     y = y / (ymax - ymin)
     
-    x = x * 100
-    x = Math.floor(x)
-    y = y * 100
-    y = Math.floor(y)
+    x = x * 1000
+    x = Math.floor(x)/10
+    y = y * 1000
+    y = Math.floor(y)/10
 
     var point = svg.createSVGPoint();
     point.x = x;
