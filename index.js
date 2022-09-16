@@ -139,7 +139,7 @@ $(document).ready( function() {
 
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
-      draw( position.coords.longitude,position.coords.latitude, position.coords.altitude, position.coords.speed, position.coords.accuracy)
+      draw( position.coords.latitude,  position.coords.longitude, position.coords.altitude, position.coords.speed, position.coords.accuracy)
       queue = post(queue)
 
     });
