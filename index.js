@@ -56,7 +56,7 @@ $(document).ready( function() {
   draw = function(X,Y, z=0, speed=0, accuracy=0) {
      
     $('#status').html('lat:'+X+' lon:'+Y+' speed:'+speed+' z:'+z+  ' accuracy:'+accuracy)
-    xmin = 53.181175
+    xmin = 53.18
     ymin = 5.754580
     xmax = 53.181223
     ymax = 5.7612
