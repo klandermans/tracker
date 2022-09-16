@@ -44,7 +44,7 @@ $(document).ready( function() {
 
   post = function(queue){
     $.get('https://dairycampus.azurewebsites.net/dcdata/htmltracker?session=' + session + '&data='+JSON.stringify(queue) , function(returnedData){
-            console.log(returnedData);
+            
     }).fail(function(){
           console.log("error");
     });  
@@ -88,14 +88,6 @@ $(document).ready( function() {
     counter = counter + 1
     $('#counter').innerHTML=counter
 
-    
-  }
-  range = function(start, stop, step=1) {
-    var a = [start], b = start;
-    while (b < stop) {
-        a.push(b += step || 1);
-    }
-    return a;
   }
 
 
@@ -155,6 +147,7 @@ $(document).ready( function() {
     queue = post(queue)
     // console.log(1)
     // draw(X=0,Y=0)
+    $('#counter').html(counter)
     
   }            
 
@@ -168,7 +161,7 @@ $(document).ready( function() {
   } else {
     window.localStorage['points'] = '';
   }
-  drawheatmap()
+  // drawheatmap()
   
 });
 
