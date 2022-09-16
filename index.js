@@ -53,9 +53,9 @@ $(document).ready( function() {
     
 
 
-  draw = function(X,Y) {
+  draw = function(X,Y, z=0, speed=0, accuracy=0) {
      
-
+    $('#status').html('lat:'+X+' lon:'+Y+'speed:'+speed+' z:'+z+  ' accuracy:'+accuracy)
     xmin = 53.178327
     ymin = 5.754580
     xmax = 53.181337
@@ -138,7 +138,7 @@ $(document).ready( function() {
 
     navigator.geolocation.getCurrentPosition(function(position,positionError) {  
       queue.push({'timestamp':Date.now(),'lat':position.coords.latitude,'lon':position.coords.longitude})         
-      draw( position.coords.longitude,position.coords.latitude)
+      draw( position.coords.longitude,position.coords.latitude, position.coords.altitude, position.coords.speed, position.coords.accuracy)
       queue = post(queue)
 
     });
@@ -149,7 +149,6 @@ $(document).ready( function() {
     // draw(X=0,Y=0)
     counter = counter + 1
     $('#counter').html(counter)
-    $('#status').html({'timestamp':Date.now(),'lat':0,'lon':0}))
     
   }            
 
@@ -165,6 +164,10 @@ $(document).ready( function() {
   }
   // drawheatmap()
   
+
+  setInterval(function(){
+    $('#timestamp').html(Date.now())
+  }, 100)
 });
 
 
